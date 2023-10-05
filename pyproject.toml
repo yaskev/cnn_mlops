@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "cnn-mlops"
+version = "0.1.0"
+description = "This is a project for the MLOps course"
+authors = ["Alexander Yaskevich"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "cnn_mlops"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+numpy = "^1.26.0"
+pandas = "^2.1.1"
+scikit-learn = "^1.3.1"
+joblib = "^1.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
