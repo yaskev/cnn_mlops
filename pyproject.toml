@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "cnn-mlops"
+name = "mlops"
 version = "0.1.0"
 description = "This is a project for the MLOps course"
 authors = ["Alexander Yaskevich"]
 license = "Apache-2.0"
 readme = "README.md"
-packages = [{include = "cnn_mlops"}]
+packages = [{include = "mlops"}]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.10"

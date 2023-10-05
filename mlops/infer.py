@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn import preprocessing
 from sklearn.metrics import *
 
-from cnn_mlops import config
+from mlops import config
 
 
 class Runner:

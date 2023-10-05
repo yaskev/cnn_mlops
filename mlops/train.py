@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 
-from cnn_mlops.model import boosting_model
+from mlops.model import boosting_model
 
 import config
 
