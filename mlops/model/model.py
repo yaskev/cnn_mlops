@@ -7,7 +7,8 @@ from sklearn.model_selection import GridSearchCV
 
 
 class Model(ABC):
-    """Abstract base class for all models"""
+    """Abstract base class for all models."""
+
     @abstractmethod
     def __init__(self, basic_model, model_name: str, optimize_hyperparams: bool = True):
         self.optimize_hyperparams = optimize_hyperparams
@@ -25,9 +26,16 @@ class Model(ABC):
             raise Exception(f'The model "{self.model_name}" has not been fitted')
         return self.optimized_model.predict(test_data)
 
-    def fit_with_grid_search(self, design_matrix: pd.DataFrame, labels: np.ndarray, hyperparams_grid: Dict = None):
+    def fit_with_grid_search(
+        self,
+        design_matrix: pd.DataFrame,
+        labels: np.ndarray,
+        hyperparams_grid: Dict = None,
+    ):
         if self.optimize_hyperparams and hyperparams_grid is not None:
-            self.optimized_model = GridSearchCV(self.basic_model, hyperparams_grid, n_jobs=-1)
+            self.optimized_model = GridSearchCV(
+                self.basic_model, hyperparams_grid, n_jobs=-1
+            )
         else:
             self.optimized_model = self.basic_model
         self.optimized_model.fit(design_matrix, labels)
