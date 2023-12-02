@@ -1,4 +1,7 @@
+from io import StringIO
+
 import config
+import dvc.api
 import joblib
 import numpy as np
 import pandas as pd
@@ -47,7 +50,9 @@ class Trainer:
 
 
 if __name__ == "__main__":
-    dataset = pd.read_csv(config.TRAIN_PATH)
+    data = dvc.api.read(config.TRAIN_PATH)
+    dataset = pd.read_csv(StringIO(data))
+
     labels = dataset.loc[:, "Survived"]
     matrix = dataset.loc[:, dataset.columns != "Survived"]
 
