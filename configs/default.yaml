@@ -1,0 +1,32 @@
+train:
+  # Boosting
+  min_estimators: 20
+  max_estimators: 150
+  estimators_step: 10
+  # Base trees
+  min_max_depth: 3
+  max_max_depth: 10
+  max_depth_step: 3
+  optimize_hyperparams: true
+
+preprocessing:
+  target_column: "Survived"
+  encoder: ordinal_encoder
+  scaler: standard_scaler
+  test_size: 0.2
+
+postprocessing:
+  save_trained_model: true
+
+analytics:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - roc_auc
+
+data:
+  model_path: "./mlops/trained_model.sav"
+  train_path: "./mlops/data/train.csv"
+  test_path: "./mlops/data/test.csv"
+  results_path: "./mlops/results.csv"
