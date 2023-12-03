@@ -9,6 +9,8 @@ import pandas as pd
 from mlops.enums import EncoderType, ScalerType
 from mlops.model import boosting_model
 from omegaconf import DictConfig
+from onnxconverter_common import FloatTensorType
+from skl2onnx import convert_sklearn
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 
@@ -61,6 +63,13 @@ class Trainer:
 
         if self.cfg.postprocessing.save_trained_model:
             joblib.dump(self.model, self.cfg.data.model_path)
+
+        if self.cfg.postprocessing.convert_to_onnx:
+            initial_types = [("input", FloatTensorType((None, self.X_train.shape[1])))]
+            model_onnx = convert_sklearn(
+                self.model.optimized_model, initial_types=initial_types, target_opset=12
+            )
+            mlflow.onnx.save_model(model_onnx, self.cfg.data.onnx_path)
 
         print("Fitted")
 

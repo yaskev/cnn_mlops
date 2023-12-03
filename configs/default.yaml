@@ -17,6 +17,7 @@ preprocessing:
 
 postprocessing:
   save_trained_model: true
+  convert_to_onnx: true
 
 analytics:
   metrics:
@@ -25,10 +26,11 @@ analytics:
     - recall
     - roc_auc
   mlflow_uri: 'http://127.0.0.1:5000/'
-  add_additional_charts: true
+  add_additional_charts: false
 
 data:
   model_path: "./mlops/trained_model.sav"
+  onnx_path: "./mlops/boosting"
   train_path: "./mlops/data/train.csv"
   test_path: "./mlops/data/test.csv"
   results_path: "./mlops/results.csv"
