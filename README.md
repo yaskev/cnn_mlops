@@ -1,5 +1,5 @@
 # General
-This is a repo for the MLOps course
+This project solves the binary classification problem using Gradient boosting approach with the Titanic dataset.
 
 ### Setting up
 Run `poetry install`
