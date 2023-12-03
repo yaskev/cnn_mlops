@@ -24,6 +24,8 @@ analytics:
     - precision
     - recall
     - roc_auc
+  mlflow_uri: 'http://127.0.0.1:5000/'
+  add_additional_charts: true
 
 data:
   model_path: "./mlops/trained_model.sav"

@@ -3,6 +3,7 @@ from io import StringIO
 import dvc.api
 import hydra
 import joblib
+import mlflow
 import numpy as np
 import pandas as pd
 from mlops.enums import EncoderType, ScalerType
@@ -67,6 +68,9 @@ class Trainer:
 @hydra.main(version_base=None, config_path="../configs", config_name="default")
 def train(cfg: DictConfig):
     """Run train and optionally save model."""
+    mlflow.set_tracking_uri(cfg.analytics.mlflow_uri)
+    mlflow.log_params(cfg)
+
     data = dvc.api.read(cfg.data.train_path)
     dataset = pd.read_csv(StringIO(data))
 

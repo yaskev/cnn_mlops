@@ -3,6 +3,7 @@ from io import StringIO
 import dvc.api
 import hydra
 import joblib
+import mlflow
 import numpy as np
 import pandas as pd
 from mlops.enums import EncoderType, ScalerType
@@ -52,6 +53,10 @@ class Runner:
 @hydra.main(version_base=None, config_path="../configs", config_name="default")
 def infer(cfg: DictConfig):
     """Run infer and print metrics."""
+    mlflow.set_tracking_uri(cfg.analytics.mlflow_uri)
+    mlflow.autolog()
+    mlflow.log_params(cfg)
+
     data = dvc.api.read(cfg.data.test_path)
     dataset = pd.read_csv(StringIO(data))
 
